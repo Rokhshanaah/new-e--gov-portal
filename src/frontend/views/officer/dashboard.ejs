@@ -1,0 +1,30 @@
+<%- include('../_layout_top', { user }) %>
+<div class="bg-white p-5 rounded-2xl shadow">
+  <h2 class="text-xl font-semibold mb-3">Department Requests</h2>
+  <table class="w-full text-sm">
+    <thead><tr class="text-left text-slate-500">
+      <th class="py-2">ID</th><th>Citizen</th><th>Service</th><th>Status</th><th>Action</th>
+    </tr></thead>
+    <tbody>
+      <% requests.forEach(r=>{ %>
+        <tr class="border-t">
+          <td class="py-2"><%= r.id %></td>
+          <td><%= r.citizen_name %></td>
+          <td><%= r.service_name %></td>
+          <td><%= r.status %></td>
+          <td>
+            <form method="post" action="/officer/requests/<%= r.id %>/status" class="flex gap-2">
+              <select name="status" class="border rounded p-1">
+                <option value="under_review">Under Review</option>
+                <option value="approved">Approve</option>
+                <option value="rejected">Reject</option>
+              </select>
+              <button class="bg-blue-600 text-white px-3 rounded">Update</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<%- include('../_layout_bottom') %>

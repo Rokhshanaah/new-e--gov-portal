@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>E-Gov Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-slate-50 text-slate-800">
+  <nav class="bg-white shadow sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="/dashboard" class="font-bold text-lg">E-Gov Portal</a>
+      <div class="text-sm">
+        <% if (typeof user !== 'undefined' && user) { %>
+          <span class="mr-3">Hi, <%= user.name %> (<%= user.role %>)</span>
+          <a class="text-blue-600 hover:underline" href="/logout">Logout</a>
+        <% } %>
+      </div>
+    </div>
+  </nav>
+  <main class="max-w-6xl mx-auto p-4">

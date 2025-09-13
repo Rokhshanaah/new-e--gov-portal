@@ -1,0 +1,21 @@
+<%- include('../_layout_top', { user }) %>
+<div class="bg-white p-5 rounded-2xl shadow">
+  <h2 class="text-xl font-semibold mb-4">Reports & Statistics</h2>
+  <table class="w-full text-sm">
+    <thead><tr class="text-left text-slate-500">
+      <th class="py-2">Department</th><th>Total</th><th>Approved</th><th>Rejected</th><th>Total Fees</th>
+    </tr></thead>
+    <tbody>
+      <% summary.forEach(d=>{ %>
+        <tr class="border-t">
+          <td class="py-2"><%= d.name %></td>
+          <td><%= d.total_requests %></td>
+          <td><%= d.approved %></td>
+          <td><%= d.rejected %></td>
+          <td>$<%= d.total_fees %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<%- include('../_layout_bottom') %>

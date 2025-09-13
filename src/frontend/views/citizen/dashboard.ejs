@@ -1,0 +1,41 @@
+<%- include('../_layout_top', { user }) %>
+<div class="grid md:grid-cols-2 gap-6">
+  <section class="bg-white p-5 rounded-2xl shadow">
+    <h2 class="text-xl font-semibold mb-3">Apply for a Service</h2>
+    <form method="post" action="/citizen/apply" class="space-y-3">
+      <select name="service_id" class="w-full border rounded p-2" required>
+        <option value="">Select a service</option>
+        <% services.forEach(s=>{ %>
+          <option value="<%= s.id %>"><%= s.name %> — <%= s.department_name %></option>
+        <% }) %>
+      </select>
+      <textarea name="details" rows="3" class="w-full border rounded p-2" placeholder="Extra details (optional)"></textarea>
+      <button class="bg-blue-600 text-white px-4 py-2 rounded">Submit</button>
+    </form>
+  </section>
+
+  <section class="bg-white p-5 rounded-2xl shadow">
+    <h2 class="text-xl font-semibold mb-3">My Applications</h2>
+    <table class="w-full text-sm">
+      <thead><tr class="text-left text-slate-500">
+        <th class="py-2">ID</th><th>Service</th><th>Status</th><th>Created</th>
+      </tr></thead>
+      <tbody>
+        <% requests.forEach(r=>{ %>
+          <tr class="border-t">
+            <td class="py-2"><%= r.id %></td>
+            <td><%= r.service_name %></td>
+            <td>
+              <span class="px-2 py-1 rounded text-white 
+                <%= r.status==='approved'?'bg-emerald-600': r.status==='rejected'?'bg-rose-600': r.status==='under_review'?'bg-amber-600':'bg-slate-500' %>">
+                <%= r.status %>
+              </span>
+            </td>
+            <td><%= new Date(r.created_at).toLocaleString() %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </section>
+</div>
+<%- include('../_layout_bottom') %>
