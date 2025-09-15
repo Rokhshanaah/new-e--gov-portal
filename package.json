@@ -7,7 +7,7 @@
     "dev:backend": "nodemon src/backend/index.js",
     "dev:frontend": "nodemon src/frontend/index.js",
     "db:setup": "node src/backend/sql/setup.js",
-    "start": "node index.js"
+   "start": "node src/backend/index.js"
 
   },
   "dependencies": {
